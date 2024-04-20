@@ -1,5 +1,6 @@
 /storage
-.bash_history
-.python_history
 /.ssh
 /.cache
+.bash_history
+.python_history
+.viminfo
