@@ -1,0 +1,5 @@
+/storage
+.bash_history
+.python_history
+/.ssh
+/.cache
