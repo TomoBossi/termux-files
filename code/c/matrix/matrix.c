@@ -23,7 +23,7 @@ char next(char e) {
     if (i > 0) {
         return d[i-1];
     }
-    return ' ';
+    return d[0];
 }
 
 int main(void) {
