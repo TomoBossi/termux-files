@@ -1,8 +1,7 @@
 #include <stdlib.h>
-#include <sys/ioctl.h>
 #include <stdio.h>
 #include <ncurses.h>
-#include <time.h>
+#include <sys/ioctl.h>
 
 /* gcc -lncurses matrix.c */
 
@@ -31,16 +30,17 @@ int main(void) {
 
     initscr(); // init ncurses mode
     curs_set(0); // hide cursor
-    start_color();
-    init_pair(1, COLOR_GREEN, COLOR_BLACK);
-    init_pair(2, COLOR_WHITE, COLOR_WHITE);
-    init_pair(3, COLOR_GREEN, COLOR_GREEN);
-    struct timespec sleep = {0, 50000000}; // sleep duration {s, ns}
+    start_color(); // enable color print
+    init_pair(1, COLOR_GREEN, COLOR_BLACK); // green on black
+    init_pair(2, COLOR_WHITE, COLOR_WHITE); // white on white
+    init_pair(3, COLOR_GREEN, COLOR_GREEN); // green on green
+    
+	timeout(65); // sleep duration (ms)
 
     struct winsize s;
     ioctl(0, TIOCGWINSZ, &s);
-    int w = s.ws_col;
-    int h = s.ws_row;
+    int w = s.ws_col; // terminal width
+    int h = s.ws_row; // terminal height
 
     char m[h][w];
     for (int j = 0; j < h; j++) {
@@ -49,7 +49,6 @@ int main(void) {
         }
     }
 
-    timeout(1);
     m[0][10] = '@';
     while (1) {
         for (int j = h-1; j >= 0; j--) {
@@ -64,12 +63,12 @@ int main(void) {
 
                 if (m[j][i] != d[n-1]) {
                     attron(COLOR_PAIR(1));
-                    if (m[j][i] != d[0] && rand() % 1000 < 1) {
+                    if (m[j][i] != d[0] && rand() % 10000 < 1) {
                         attron(COLOR_PAIR(3));
                     }
                 } else {
                     attron(A_BOLD);
-                    if (rand() % 15 < 1) {
+                    if (rand() % 30 < 1) {
                         attron(COLOR_PAIR(2));
                     }
                 }
@@ -80,12 +79,13 @@ int main(void) {
                 attroff(A_BOLD);
                 attroff(COLOR_PAIR(1));
                 attroff(COLOR_PAIR(2));
+				attroff(COLOR_PAIR(3));
             }
         }
-        refresh();
-        nanosleep(&sleep, NULL);
+
+        refresh(); // clear
     
-        int c = getch();   /* get a character */
+        int c = getch();
         if ( c == ' ') {
             break;
         }
