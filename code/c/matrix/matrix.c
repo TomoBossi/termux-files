@@ -13,7 +13,7 @@ int main(void) {
     init_pair(1, COLOR_GREEN, COLOR_BLACK); // green on black
     init_pair(2, COLOR_WHITE, COLOR_WHITE); // white on white
     init_pair(3, COLOR_GREEN, COLOR_GREEN); // green on green
-	timeout(65); // sleep duration (ms)
+    timeout(65); // sleep duration (ms)
 
     struct winsize s;
     ioctl(0, TIOCGWINSZ, &s);
@@ -50,7 +50,7 @@ int main(void) {
                 attroff(A_BOLD);
                 attroff(COLOR_PAIR(1));
                 attroff(COLOR_PAIR(2));
-				attroff(COLOR_PAIR(3));
+		attroff(COLOR_PAIR(3));
             }
         }
 
