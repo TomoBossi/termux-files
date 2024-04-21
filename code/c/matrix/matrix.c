@@ -8,7 +8,7 @@ int main(void) {
     curs_set(0); // hide cursor
     start_color(); // enable color print
     timeout(65); // sleep duration (ms)
-    init_pair(1, COLOR_WHITE, COLOR_BLACK); // green on black
+    init_pair(1, COLOR_WHITE, COLOR_BLACK); // white on black
     init_pair(2, COLOR_GREEN, COLOR_BLACK); // green on black
     init_pair(3, COLOR_WHITE, COLOR_WHITE); // white on white
     init_pair(4, COLOR_GREEN, COLOR_GREEN); // green on green
