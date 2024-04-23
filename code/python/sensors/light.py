@@ -13,7 +13,7 @@ def execute(cmd):
          raise subprocess.CalledProcessError(return_code, cmd)
 
 
-# light = json.loads(subprocess.run(['termux-sensor', '-s', 'LIGHT', '-n', '3'], capture_output = True, text = True).stdout)['LIGHT']['values'][
+# light = json.loads(subprocess.run(['termux-sensor', '-s', 'LIGHT', '-n', '3'], capture_output = True, text = True).stdout)['LIGHT']['values'][0]
 
 light = 0
 line_idx = 0
