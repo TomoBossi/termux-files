@@ -61,16 +61,21 @@ def main():
     cmd_thread = threading.Thread(target=update_global_sensor_data, args=(sensors, delay))
     cmd_thread.start()
 
-    while True:
-        stdscr.clear()
-        stdscr.addstr(0, 0, '{')
-        for idx, key in enumerate(global_sensor_data.keys(), start=1):
-            stdscr.addstr(idx, 0, f'\t{key}: {list(global_sensor_data[key])}')
-        stdscr.addstr(idx+1, 0, '}')
-        stdscr.refresh()
-        time.sleep(0.3)
-    
-    cmd_thread.join()
+    try:
+        while True:
+            stdscr.clear()
+            stdscr.addstr(0, 0, '{')
+            for idx, key in enumerate(global_sensor_data.keys(), start=1):
+                stdscr.addstr(idx, 0, f'\t{key}: {list(global_sensor_data[key])}')
+            stdscr.addstr(idx+1, 0, '}')
+            stdscr.addstr(idx+2, 0, '')
+            stdscr.refresh()
+            time.sleep(0.3)
+
+    except KeyboardInterrupt:
+        cmd_thread.join()
+        curses.endwin()
+        return
 
 if __name__ == '__main__':
     main()
