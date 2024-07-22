@@ -27,3 +27,5 @@ sensor_structure = {                         # Usability (OK/MID/BAD) / Values /
     'SIGNIFICANT_MOVE': zeros(1),            # BAD / None
     'STEP_DETECTOR_WAKEUP': zeros(1),        # MID / None until step detected, becomes single 1 / Seems the same as STEP_DETECTOR
 }
+
+sensor_list = sorted(list(sensor_structure.keys()), key=len)
