@@ -2,7 +2,9 @@
 /.ssh
 /.cache
 /.local
+/.config/gh
 .bash_history
 .python_history
 .viminfo
 .termux_authinfo
+.gitconfig
